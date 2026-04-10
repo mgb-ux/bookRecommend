@@ -1,0 +1,63 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Finding Similar Books</title>
+
+    <!-- Load external CSS styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+    <h2>Finding Similar Books!</h2>
+
+    <p>Enter a book, and find ones similar to it.</p>
+
+    <form method="POST">
+        <label for="book_title">Book:</label><br>
+
+        <input
+            type="text"
+            id="book_title"
+            name="book_title"
+            required
+            placeholder="The book title."
+            value="{{ request.form.book_title or '' }}"
+        ><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <hr>
+
+    <!-- Error message -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <!-- ✅ Results -->
+    {% if recommendations and recommendations|length > 0 %}
+        <h3>Books similar to "{{ original }}"</h3>
+
+        <ul>
+        {% for book in recommendations %}
+            <li>
+                <strong>
+    <a href="{{ book.url }}" target="_blank">
+        {{ book.title }}
+    </a>
+</strong><br>
+                {{ book.authors }}<br>
+                Similarity score: {{ book.score }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% elif original %}
+        <!-- ✅ This is the missing visibility -->
+        <p>No similar books were found.</p>
+    {% endif %}
+
+</body>
+</html>
