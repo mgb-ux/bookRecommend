@@ -16,7 +16,7 @@ app = Flask(__name__)
 # ------------
 # User Agent
 # ------------
-User-Agent: Mozilla/5.0 (<system-information>) <platform> (<platform-details>) <extensions>
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 
 # -------------------------
 # Sets up file-based caching
