@@ -13,6 +13,11 @@ from urllib3.util.retry import Retry
 
 app = Flask(__name__)
 
+# ------------
+# User Agent
+# ------------
+User-Agent: Mozilla/5.0 (<system-information>) <platform> (<platform-details>) <extensions>
+
 # -------------------------
 # Sets up file-based caching
 # -------------------------
